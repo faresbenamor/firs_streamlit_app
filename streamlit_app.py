@@ -1,8 +1,7 @@
 import streamlit
 import requests
 import pandas
-import pkg_resources
-print(pkg_resources.get_distribution("snowflake-connector-python").version)
+import snowflake.connector
 
 streamlit.title('My Parents New Healty Dinner')
 streamlit.header('🥣 Breakfast Menu')
