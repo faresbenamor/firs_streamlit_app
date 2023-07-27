@@ -3,14 +3,6 @@ import requests
 import pandas
 import snowflake.connector
 
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("use role accountadmin")
-my_cur.execute("SELECT * FROM fruit_load_list")
-my_data_row = my_cur.fetchone()
-streamlit.text("Hello from Snowflake:")
-streamlit.text(my_data_row)
-
 streamlit.title('My Parents New Healty Dinner')
 streamlit.header('🥣 Breakfast Menu')
 streamlit.text('🥗 Omega 3 & Blueberry Oatmeal')
@@ -37,3 +29,12 @@ streamlit.write('The user entered ', fruit_choice)
 streamlit.dataframe(fruits_to_show)
 streamlit.header("Fruityvice Fruit Advice!")
 streamlit.dataframe(fruityvice_normalized)
+
+# Snawflake
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("use role accountadmin")
+my_cur.execute("SELECT * FROM fruit_load_list")
+my_data_row = my_cur.fetchone()
+streamlit.header("The fruit load list contains :")
+streamlit.dataframe(my_data_row)
